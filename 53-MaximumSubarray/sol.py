@@ -1,23 +1,21 @@
 class Solution(object):
-    def containsDuplicate(self, nums):
+    def productExceptSelf(self, nums):
         """
         :type nums: List[int]
-        :rtype: bool
+        :rtype: List[int]
         """
-        # nums = sorted(nums)
-        # prev = nums[0]
-        # for i in range(1, len(nums)):
-        #     if(prev==nums[i]) : return True
-        #     else : prev = nums[i]
-        # return False
-        map = {}
-        for i in range(0, len(nums)):
-            if nums[i] in map : return True
-            else : map[nums[i]] = i
-        return False
-        # if len(nums)==len(set(nums)):  이렇게 set()으로
-        #  길이를 비교하면
-        # 더 높은 성능으로 측정됨.
-        #     return False 
-        #     else:
-        #     return True
+        num=1
+        zero =0
+        for i in range(len(nums)):
+            if(nums[i]!=0) : num*= nums[i]
+            else: zero+=1
+        output = list()
+        if zero==0:
+            for i in range(len(nums)):
+                output.append(num/nums[i])
+        elif zero==1 : 
+            for i in range(len(nums)):
+                if(nums[i]==0) : output.append(num)
+                else : output.append(0)
+        else : output = [ 0 for _ in range(len(nums))]
+        return output
